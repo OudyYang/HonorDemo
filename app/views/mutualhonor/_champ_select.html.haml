@@ -1,0 +1,23 @@
+%b
+	Champion Select
+%table{border: 1}
+	- (0..4).each do |x|
+		%tr
+			- if x == 0
+				%td{width: '400px', height: '100px'}
+					= player.name
+					= form_tag(mutualhonor_play_url(player.player_id, npcs: npcs), method: :put, remote: true) do
+						= select_tag 'champion', options_for_select(Champion.get_select_options)
+						= submit_tag 'Select Champion', data: {disable_with: 'Select Champion'}
+			- else
+				- if past_honored.include?(npcs[x-1].npc_id)
+					%td{width: '400px', height: '100px', style: 'border-color: #60BF00; border-width: 2px'}
+						= npcs[x-1].name
+						<br/><br/>
+						%span{style: 'color: #60BF00'}
+							You have recently honored this summoner.
+				- else
+					%td{width: '400px', height: '100px'}
+						= npcs[x-1].name
+			%td{width: '400px', height: '100px'}
+				Summoner #{x+1}

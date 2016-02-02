@@ -1,0 +1,2 @@
+$('.notifications').empty()
+$('.main').html("<%= escape_javascript(render(partial: 'champ_select', locals: {player: @player, npcs: @npcs, past_honored: @past_honored})) %>");

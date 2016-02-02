@@ -1,0 +1,3 @@
+%div{align: 'center', valign: 'center'}
+	Logged in as: #{player.name}
+	= button_to 'Find Match', mutualhonor_queue_url(player.player_id), method: 'put', remote: true, data: {disable_with: 'Find Match'}

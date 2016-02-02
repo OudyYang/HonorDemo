@@ -1,0 +1,39 @@
+- if blue_victory
+	%b{style: 'color: #0080FF'}
+		Victory!
+- else
+	%b{style: 'color: #FF0000'}
+		Defeat
+<br/>
+#{blue_kill_total}/#{red_kill_total}
+%table{border: 1}
+	- (0..4).each do |x|
+		%tr
+			%td{width: '400px', height: '100px'}
+				- if x == 0
+					= player.name
+					</br>
+					= player_champ.name
+				- else
+					= npcs[x-1].name
+					</br>
+					= npc_champs[x-1].name
+				</br>
+				= "#{blue_kills[x]}/#{blue_deaths[x]}/#{blue_assists[x]}"
+				- if x != 0
+					<br/>
+					= button_to 'Honor', mutualhonor_honor_url(player.player_id, npc: npcs[x-1].npc_id, champion: npc_champs[x-1].champion_id, probability: probability,
+					 button: "honor_button_#{x-1}"), method: 'put', remote: true, id: "honor_button_#{x-1}", data: {disable_with: 'Sent!'}
+			%td{width: '400px', height: '100px'}
+				= npcs[x+4].name
+				</br>
+				= npc_champs[x+4].name
+				</br>
+				= "#{red_kills[x]}/#{red_deaths[x]}/#{red_assists[x]}"
+				<br/>
+				= button_to 'Honor', mutualhonor_honor_url(player.player_id, npc: npcs[x+4].npc_id, champion: npc_champs[x+4].champion_id, probability: probability,
+				 button: "honor_button_#{x+4}"), method: 'put', remote: true, id: "honor_button_#{x+4}", data: {disable_with: 'Sent!'}
+= form_tag(mutualhonor_return_url(player.player_id), method: :put, remote: true) do
+	= hidden_field_tag 'unhonored', 9
+	= hidden_field_tag 'unhonored_probability', probability
+	= submit_tag 'Return', data: {disable_with: 'Return'}

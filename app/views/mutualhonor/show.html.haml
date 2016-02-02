@@ -1,0 +1,12 @@
+%table{height: '800px', border: 1}
+	%tr
+		%td{width: '300px'}
+			= render 'instructions'
+		%td{class: 'main', width: '900px', align: 'center'}
+			= render(partial: 'join_queue', locals: {player: @player})
+		%td{width: '300px', valign: 'top'}
+			%b{align: 'center'}
+				Notifications
+			<br/>
+			%hr
+			%div{class: 'notifications', width: '100%'}

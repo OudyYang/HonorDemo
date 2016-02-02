@@ -1,0 +1,4 @@
+$('.main').html("<%= escape_javascript(render(partial: 'join_queue', locals: {player: @player})) %>");
+$('.notifications').append("<%= escape_javascript(render(partial: 'mutual_honor_notifications', locals: {mutual_honors: @mutual_honors})) %>");
+$('.notifications').append("<%= escape_javascript(render(partial: 'extra_honor_notification', locals: {extra_honors: @extra_honors})) %>");
+$('#tips').css('visibility', 'visible')

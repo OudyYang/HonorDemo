@@ -1,0 +1,4 @@
+$('.notifications').empty()
+$('.main').html("<%= escape_javascript(render(partial: 'post_game', locals: {player: @player, player_champ: @player_champ, npcs: @npcs,
+  npc_champs: @npc_champs, blue_kill_total: @blue_kill_total, red_kill_total: @red_kill_total, blue_victory: @blue_victory, blue_kills: @blue_kills,
+  blue_deaths: @blue_deaths, blue_assists: @blue_assists, red_kills: @red_kills, red_deaths: @red_deaths, red_assists: @red_assists, probability: @probability})) %>");

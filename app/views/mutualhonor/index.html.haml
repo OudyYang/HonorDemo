@@ -1,0 +1,15 @@
+%table{height: '800px', border: 1}
+	%tr
+		%td{width: '300px'}
+			= render 'instructions'
+		%td{class: 'main', width: '900px', align: 'center'}
+			Username:
+			= form_tag(login_mutualhonor_index_url, method: :put) do
+				= text_field_tag 'name'
+				= submit_tag 'Login'
+		%td{width: '300px', valign: 'top'}
+			%b{align: 'center'}
+				Notifications
+			<br/>
+			%hr
+			%div{class: 'notifications', width: '100%'}
